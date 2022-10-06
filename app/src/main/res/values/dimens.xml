@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Movies Rows  -->
+    <dimen name="text_size_movie_section_title">20sp</dimen>
+    <dimen name="padding_rows_movies">8dp</dimen>
+    <dimen name="item_corner_radius">8dp</dimen>
+    <dimen name="item_movie_height">150dp</dimen>
+    <dimen name="item_movie_width">100dp</dimen>
+    <!-- Movie Detail   -->
+    <dimen name="background_height">250dp</dimen>
+    <dimen name="movie_title_size">25sp</dimen>
+    <dimen name="movie_overview_size">20sp</dimen>
+    <dimen name="margin_info_movie">16dp</dimen>
+    <!--  Photos   -->
+    <dimen name="progress_bar_width">200dp</dimen>
+    <dimen name="text_size_percent">20sp</dimen>
+
+</resources>

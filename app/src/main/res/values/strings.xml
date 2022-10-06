@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Movies App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mapbox_acces_token">sk.eyJ1Ijoib3NjYXJlc2NhbSIsImEiOiJjbDBobXZmcm8wYTU3M2twbnNsNHVuaHA1In0.QNgV3A3agbmoq3nsTsIFeg</string>
+    <string name="upload_photos">Upload Photos</string>
+    <string name="popular_movies">Popular movies</string>
+    <string name="top_rated_movies">Top rated movies</string>
+    <string name="upcoming_movies">Upcoming movies</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="favorites">Favorites</string>
+    <string name="share">Share</string>
+    <string name="overview">Overview</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at erat efficitur velit varius hendrerit quis in elit. Etiam vitae magna eu diam euismod dictum sed in sapien. Quisque non tortor turpis. Vivamus eu risus sit amet est dapibus mollis. Phasellus laoreet, turpis nec posuere dictum, ipsum velit mattis orci, eget varius ante elit sed ligula.</string>
+</resources>
