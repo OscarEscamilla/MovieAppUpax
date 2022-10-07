@@ -79,7 +79,7 @@ class LocationsFragment : Fragment() {
 
     private fun fetchLocations(locations: List<Location>){
         for (location in locations){
-            addMarker(location.position!!.longitude,location.position!!.longitude,location.created_at!!)}
+            addMarker(location.position!!.longitude,location.position!!.latitude,location.created_at!!)}
     }
 
 
