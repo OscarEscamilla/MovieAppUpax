@@ -29,6 +29,7 @@ import com.upax.moviesapp.R
 import com.upax.moviesapp.core.Resource
 import com.upax.moviesapp.data.model.Location
 import com.upax.moviesapp.databinding.FragmentLocationsBinding
+import com.upax.moviesapp.utils.formatToStringMap
 import com.upax.moviesapp.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -78,8 +79,10 @@ class LocationsFragment : Fragment() {
     }
 
     private fun fetchLocations(locations: List<Location>){
+        updateCamera(locations.last().position!!.longitude, locations.last().position!!.latitude)
         for (location in locations){
-            addMarker(location.position!!.longitude,location.position!!.latitude,location.created_at!!)}
+            addMarker(location.position!!.longitude,location.position!!.latitude,location.created_at!!)
+        }
     }
 
 
@@ -95,7 +98,7 @@ class LocationsFragment : Fragment() {
                 val pointAnnotationOptions: PointAnnotationOptions = PointAnnotationOptions()
                     .withPoint(Point.fromLngLat(longitude, latitude))
                     .withIconImage(it)
-                    .withTextField(date.toString())
+                    .withTextField(date.formatToStringMap())
                     .withTextSize(10.0)
                 pointAnnotationManager?.create(pointAnnotationOptions)
             }
@@ -135,7 +138,7 @@ class LocationsFragment : Fragment() {
                 // Centers the camera to the lng/lat specified.
                 .center(Point.fromLngLat(longitude, latitude))
                 // specifies the zoom value. Increase or decrease to zoom in or zoom out
-                .zoom(14.0)
+                .zoom(11.5)
                 // specify frame of reference from the center.
                 .padding(EdgeInsets(500.0, 0.0, 0.0, 0.0))
                 .build(),

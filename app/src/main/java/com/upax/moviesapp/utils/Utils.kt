@@ -12,3 +12,5 @@ fun showSimpleAlert(context: Context, msg: String) {
         .setPositiveButton("OK") { dialog, id -> }
         .show()
 }
+
+
