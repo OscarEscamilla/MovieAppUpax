@@ -54,6 +54,7 @@ class PhotosFragment : Fragment() {
             Intent(Intent.ACTION_GET_CONTENT)
                 .setType("image/*")
                 .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
+                .putExtra(Intent.ACTION_PICK,true)
                 .apply {
                 startActivityForResult(this,GALERY_INTENT)
             }

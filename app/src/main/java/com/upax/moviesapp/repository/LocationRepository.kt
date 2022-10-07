@@ -9,31 +9,19 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.inject.Deferred
 import com.upax.moviesapp.data.model.Location
+import com.upax.moviesapp.data.network.LocationsDataSource
 import javax.inject.Inject
 
-class LocationRepository @Inject constructor(private val locationsRef: CollectionReference) {
+class LocationRepository @Inject constructor(private val locationsDataSource: LocationsDataSource) {
 
 
-    fun getAllLocations(): List<Location> {
-        val listLocation = mutableListOf<Location>()
-        locationsRef.get().addOnSuccessListener { result ->
-            for (document in result){
-                val created_at = document.getDate("created_at")
-                val position = document.getGeoPoint("position")
-                val location = Location(created_at, position)
-                listLocation.add(location)
-            }
-            Log.e("locaa","${listLocation}")
-        }
-        Log.e("loca","${listLocation}")
-        return listLocation.toList()
+    suspend fun getAllLocations(): List<Location> {
+        return locationsDataSource.getAllLocations()
     }
 
 
-    fun saveLocation(location: Location) {
-        locationsRef.document().set(location).addOnSuccessListener {
-            return@addOnSuccessListener
-        }
+    suspend fun saveLocation(location: Location) {
+        locationsDataSource.saveLocation(location)
     }
 
 }

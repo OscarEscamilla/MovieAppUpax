@@ -26,7 +26,10 @@ import com.mapbox.maps.plugin.annotation.annotations
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
 import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import com.upax.moviesapp.R
+import com.upax.moviesapp.core.Resource
+import com.upax.moviesapp.data.model.Location
 import com.upax.moviesapp.databinding.FragmentLocationsBinding
+import com.upax.moviesapp.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -55,28 +58,33 @@ class LocationsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mapView = binding.mapView
         mapView?.getMapboxMap()?.loadStyleUri(Style.MAPBOX_STREETS)
-        //setupObservers()
-        getLocations()
+        setupObservers()
     }
 
-    private fun getLocations(){
-        val locationsRef = FirebaseFirestore.getInstance().collection("locations")
-        locationsRef.get().addOnSuccessListener { result ->
-            val positionCamera = result.documents.last().getGeoPoint("position")
-            if (positionCamera != null) {
-                updateCamera(positionCamera.longitude, positionCamera.latitude)
-            }
-            for (document in result){
-                val created_at = document.getDate("created_at")
-                val position = document.getGeoPoint("position")
-                if (position != null) {
-                    addMarker(position.longitude, position.latitude, created_at!!)
+    private fun setupObservers() {
+        viewModel.locations.observe(viewLifecycleOwner, {
+            when(it){
+                is Resource.Loading -> {
+                    activity?.toast("Loading locations")
+                }
+                is Resource.Succes -> {
+                    fetchLocations(it.data)
+                }
+                is Resource.Failure -> {
+                    activity?.toast("Error locations not loaded")
                 }
             }
-        }
+        })
     }
 
+    private fun fetchLocations(locations: List<Location>){
+        for (location in locations){
+            addMarker(location.position!!.longitude,location.position!!.longitude,location.created_at!!)}
+    }
+
+
     private fun addMarker(longitude: Double, latitude: Double, date: Date) {
+        Log.e("Marker","longitude: $longitude, latitude: $latitude, date: $date")
         try {
             bitmapFromDrawableRes(
                 activity!!,
